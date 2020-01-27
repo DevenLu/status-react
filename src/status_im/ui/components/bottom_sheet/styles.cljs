@@ -27,12 +27,15 @@
    :background-color colors/black-transparent-40})
 
 (defn content-container
-  [content-height bottom-value]
+  [bottom-value]
   {:background-color        colors/white
    :border-top-left-radius  border-radius
    :border-top-right-radius border-radius
-   :height                  (+ content-height bottom-view-height)
-   :bottom                  (- bottom-view-height)
+   :bottom                  (- (+ bottom-view-height
+                                  border-radius
+                                  top-padding
+                                  bottom-padding))
+   :padding-bottom          bottom-view-height
    :align-self              :stretch
    :transform               [{:translateY bottom-value}]})
 
@@ -41,6 +44,7 @@
 
 (def content-header
   {:height          border-radius
+   :margin-bottom   top-padding
    :align-self      :stretch
    :justify-content :center
    :align-items     :center})
